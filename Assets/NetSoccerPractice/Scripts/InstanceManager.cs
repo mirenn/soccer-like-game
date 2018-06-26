@@ -16,6 +16,10 @@ public class InstanceManager : MonoBehaviour {
         count = 0;
         obj[count] = Instantiate(lineObject, transform.position, transform.rotation);
         count++;
+
+        Vector3 pos = new Vector3(0, 3, 0);
+        GameObject objPlayer = PhotonNetwork.Instantiate("SoccerPlayerPrefab", pos, Quaternion.identity, 0);
+
     }
 
     // Update is called once per frame
