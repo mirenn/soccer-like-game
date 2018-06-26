@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameScene.unity
     guid: 7e1f8b075dc84e140b91434f5f35a8a6
+  - enabled: 1
+    path: Assets/Scenes/NetworkSoccerScene.unity
+    guid: 8bbdf58d4b56a064a89d497f10663475
   m_configObjects: {}

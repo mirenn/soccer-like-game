@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class LineObject : MonoBehaviour
-{
+public class LineRenderObject : MonoBehaviour {
 
     GameObject ObjectCylinder;
 
@@ -27,38 +26,36 @@ public class LineObject : MonoBehaviour
     Transform target;//目標地点//使わないかも
     public List<Vector3> targetPoints;
 
-    CylinderClick refCylinderObj;
-    CylinderLineTrack refCylinderLineTrack;
+    SoccerPlayerClick refCylinderObj;
+    SoccerPlayerLineTrack refCylinderLineTrack;
 
 
     // Use this for initialization
-    void Start()
-    {
-        ObjectCylinder = GameObject.Find("Cylinder");
-        refCylinderObj = ObjectCylinder.GetComponent<CylinderClick>();
-        refCylinderLineTrack = ObjectCylinder.GetComponent<CylinderLineTrack>();
+    void Start () {
+        ObjectCylinder = GameObject.Find("SoccerPlayerPrefab");
+        refCylinderObj = ObjectCylinder.GetComponent<SoccerPlayerClick>();
+        refCylinderLineTrack = ObjectCylinder.GetComponent<SoccerPlayerLineTrack>(); 
 
 
         lineRenderer = GetComponent<LineRenderer>();
         Debug.Log(lineRenderer);
         lineRenderer.enabled = false;
         targetPoints = new List<Vector3>();
-        //clickEventFlag = true;  //////////////suitti
         clickEventFlag = refCylinderObj.clickEventFlag;
         enterEventFlag = refCylinderObj.onPointerEnterFlag;
 
         oneDrawFlag = true;
     }
 
-
-    // Update is called once per frame
-    public void Update()
-    {
+	
+	// Update is called once per frame
+	public void Update () {
         clickEventFlag = refCylinderObj.clickEventFlag;
         enterEventFlag = refCylinderObj.onPointerEnterFlag;
 
+        //Debug.Log(clickEventFlag);
 
-        if (enterEventFlag && Input.GetMouseButtonDown(0))//マウスを押してエンターを押すと、
+        if(enterEventFlag && Input.GetMouseButtonDown(0))//マウスを押してエンターを押すと、
         {
             //lineRenderer.positionCount = 0;
             lineIndex = 1;
@@ -67,7 +64,7 @@ public class LineObject : MonoBehaviour
             Touch();
             oneDrawFlag = true;
         }
-        if (targetPoints.Count != 0 && Input.GetMouseButton(0) && oneDrawFlag)//一筆書きをフラグ、タッチして
+        if(targetPoints.Count != 0 && Input.GetMouseButton(0) && oneDrawFlag)//一筆書きをフラグ、タッチして
         {
             Touch();
         }
@@ -77,15 +74,14 @@ public class LineObject : MonoBehaviour
             oneDrawFlag = false;
         }
 
-        if (targetPoints.Count >= 1 && oneDrawFlag == false)
+        if(targetPoints.Count >= 1 && oneDrawFlag == false)
         {
             if (refCylinderLineTrack.agent.remainingDistance < 0.7)
             {
                 targetPoints.RemoveAt(0);
                 Debug.Log(targetPoints.Count);
 
-                foreach (var item in targetPoints.Select((Value, Index) => new { Value, Index }))
-                {//ここで辿った線を消している
+                foreach (var item in targetPoints.Select((Value, Index)=> new {Value, Index})) {//ここで辿った線を消している
                     lineRenderer.SetPosition(item.Index, item.Value);
                 }
             }
@@ -97,7 +93,7 @@ public class LineObject : MonoBehaviour
         }
 
         deltaTime += Time.deltaTime;
-        if (deltaTime > touchInterval)
+        if(deltaTime > touchInterval)
         {
             deltaTime = 0;
             touchEnable = true;
@@ -115,6 +111,7 @@ public class LineObject : MonoBehaviour
 
     void Touch()
     {
+        Debug.Log("Touch");
         Vector3 screenPoint = Input.mousePosition;
         screenPoint.z = 10.0f;
         //Camera camera = GetComponent<Camera>();

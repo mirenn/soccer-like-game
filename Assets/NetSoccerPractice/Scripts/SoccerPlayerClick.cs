@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CylinderClick : MonoBehaviour {
+public class SoccerPlayerClick : MonoBehaviour {
 
     GameObject refObj;
     GameObject refLineObj;
@@ -10,44 +10,41 @@ public class CylinderClick : MonoBehaviour {
     public Vector3 force = new Vector3(0, 10, 0);
     public ForceMode forceMode = ForceMode.VelocityChange;
     public bool clickEventFlag;
-    public GameObject attackObjectPrefab;
     public bool onPointerEnterFlag;
 
 
     // Use this for initialization
-    void Start () {
-        refObj = GameObject.Find("LineObject");
-        refLineObj = GameObject.Find("LineController");
+    void Start()
+    {
+        refObj = GameObject.Find("LineRenderObjectPrefab");
+        refLineObj = GameObject.Find("InstanceManager");
 
         rigidBody = gameObject.GetComponent<Rigidbody>();
         clickEventFlag = false;
         onPointerEnterFlag = false;
     }
-	
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
     public void OnPointerClick()
     {
         // GameObject refLineObj = GameObject.Find("LineController");
-        Debug.Log("Cylinder Click から来てます");
-        LineController g1 = refLineObj.GetComponent<LineController>();
+        Debug.Log("OnPointerClick から来てます");
         clickEventFlag = true;
-
-        GameObject attack = Instantiate(attackObjectPrefab) as GameObject;
-        attack.GetComponent<AttackObjectController>().Shoot(
-            new Vector3(400, 200, 0)
-            );
     }
 
     public void OnPointerEnter()//OnPointerEnter中はこれが実行される
     {
+        Debug.Log("OnPointerEnterから来ています");
         onPointerEnterFlag = true;
     }
     public void OnPointerExit()
     {
         onPointerEnterFlag = false;
     }
+
 }
