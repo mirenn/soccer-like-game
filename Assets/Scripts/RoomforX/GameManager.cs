@@ -7,6 +7,11 @@ namespace SoccerLikeGame
 {
     public class GameManager : Photon.PunBehaviour
     {
+        #region Public variables
+        [Tooltip("The prefab to use for representing the player")]
+        public GameObject playerPrefab;
+        static public GameManager Instance;
+        #endregion
 
         #region Photon Messages
 
@@ -28,6 +33,7 @@ namespace SoccerLikeGame
         }
 
         #endregion
+
         #region Private Methods
 
         void LoadArena()
@@ -70,6 +76,40 @@ namespace SoccerLikeGame
             }
         }
 
+        #endregion
+        #region MonoBehabior
+
+        private void Start()
+        {
+            Instance = this;
+            if (playerPrefab == null)
+            {
+                Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
+            }
+            else
+            {
+                if (PlayerManager.LocalPlayerInstance == null)
+                {
+                    Debug.Log("We are Instantiating LocalPlayer from " + Application.loadedLevelName);
+                    // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                }
+                else
+                {
+                    Debug.Log("Ignoring scene load for " + Application.loadedLevelName);
+                }
+            }
+        }
+        #endregion
+        #region MonoBehavior Callbacks
+        void OnLevelWasLoaded(int level)
+        {
+            // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
+            if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
+            {
+                transform.position = new Vector3(0f, 5f, 0f);
+            }
+        }
         #endregion
     }
 } 

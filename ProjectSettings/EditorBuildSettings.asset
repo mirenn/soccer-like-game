@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Roomfor1.unity
     guid: 880a6f296dcf9284b8210cd3c8b129aa
+  - enabled: 1
+    path: Assets/Scenes/Roomfor2.unity
+    guid: b8906b9fc5591b7408f19acfd8eaace6
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
