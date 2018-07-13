@@ -120,7 +120,7 @@ namespace SoccerLikeGame
             //最初にプレイヤーをクリックした時
             if (playerPointerEnterFlag == true && Input.GetMouseButtonDown(0))
             {
-                Debug.Log("最初にプレイヤーをクリックした時");
+                //Debug.Log("最初にプレイヤーをクリックした時");
                 linePointCount = 1;
                 destinationPoints.Clear();
                 lineRenderer.positionCount = 0;
