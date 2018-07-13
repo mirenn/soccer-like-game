@@ -362,11 +362,6 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1748609623}
-    - target: {fileID: 114877557858937506, guid: c324bb138ef53ea4fb7dc8a2f83b75ca,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LeaveRoom
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c324bb138ef53ea4fb7dc8a2f83b75ca, type: 2}
   m_IsPrefabParent: 0
