@@ -18,7 +18,7 @@ namespace SoccerLikeGame
         /// <summary>
         /// Called when the local player left the room. We need to load the launcher scene.
         /// </summary>
-        public void OnLeftRoom()
+        public override void OnLeftRoom()// => + override
         {
             SceneManager.LoadScene(0);
         }
