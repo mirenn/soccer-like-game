@@ -39,6 +39,7 @@ namespace SoccerLikeGame
         void LoadArena()
         {
             //TODO:三人以上も許容しているがシーンを用意していない。許容するプレーヤー数を変更しよう
+            //fixme?:ほぼ同時に接続すると二人とも同じ部屋に接続される
             if (!PhotonNetwork.isMasterClient)
             {
                 Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
@@ -92,7 +93,16 @@ namespace SoccerLikeGame
                 {
                     Debug.Log("We are Instantiating LocalPlayer from " + Application.loadedLevelName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                    //マスタークライアントはx負側、x正側
+                    if(PhotonNetwork.isMasterClient == true)
+                    {
+                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, 0f), Quaternion.identity, 0);
+                    }
+                    else
+                    {
+                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(5f, 5f, 0f), Quaternion.identity, 0);
+                    }
+
                 }
                 else
                 {
