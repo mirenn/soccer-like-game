@@ -398,7 +398,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4708265407146488, guid: 5d82b9710c9700c42a0f7e8a0bc974c2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.70797014
       objectReference: {fileID: 0}
     - target: {fileID: 4708265407146488, guid: 5d82b9710c9700c42a0f7e8a0bc974c2, type: 2}
       propertyPath: m_LocalRotation.z
@@ -406,7 +406,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4708265407146488, guid: 5d82b9710c9700c42a0f7e8a0bc974c2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7062424
       objectReference: {fileID: 0}
     - target: {fileID: 4708265407146488, guid: 5d82b9710c9700c42a0f7e8a0bc974c2, type: 2}
       propertyPath: m_RootOrder
@@ -434,6 +434,10 @@ Prefab:
     - target: {fileID: 4708265407146488, guid: 5d82b9710c9700c42a0f7e8a0bc974c2, type: 2}
       propertyPath: m_LocalScale.x
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4708265407146488, guid: 5d82b9710c9700c42a0f7e8a0bc974c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90.14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d82b9710c9700c42a0f7e8a0bc974c2, type: 2}
@@ -622,7 +626,7 @@ GameObject:
   - component: {fileID: 1828784181}
   - component: {fileID: 1828784186}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: SampleBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -696,6 +696,12 @@ Prefab:
       value: 
       objectReference: {fileID: 1506864626178756, guid: 5d82b9710c9700c42a0f7e8a0bc974c2,
         type: 2}
+    - target: {fileID: 114177572098005954, guid: e08561e37184d5348b4e12138cf60b6b,
+        type: 2}
+      propertyPath: ballPrefab
+      value: 
+      objectReference: {fileID: 1686965654561178, guid: 397179be202122d4f8a617ace1fdce68,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e08561e37184d5348b4e12138cf60b6b, type: 2}
   m_IsPrefabParent: 0

@@ -20,5 +20,15 @@ public class BallManager : MonoBehaviour {
             Debug.Log("Goal");
             transform.position = new Vector3(0f, 5f, 0f);
         }
+        if (collision.gameObject.name == "GoalFloorPx")
+        {
+            Debug.Log("Goal");
+            transform.position = new Vector3(0f, 5f, 0f);
+        }
+        if (collision.gameObject.name == "GoalFloorPy")
+        {
+            Debug.Log("Goal");
+            transform.position = new Vector3(0f, 5f, 0f);
+        }
     }
 }

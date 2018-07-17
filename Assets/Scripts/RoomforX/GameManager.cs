@@ -10,6 +10,7 @@ namespace SoccerLikeGame
         #region Public variables
         [Tooltip("The prefab to use for representing the player")]
         public GameObject playerPrefab;
+        public GameObject ballPrefab;
         static public GameManager Instance;
         #endregion
 
@@ -96,7 +97,9 @@ namespace SoccerLikeGame
                     //マスタークライアントはx負側、x正側
                     if(PhotonNetwork.isMasterClient == true)
                     {
+                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, 1f), Quaternion.identity, 0);
                         PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, 0f), Quaternion.identity, 0);
+                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, -1f), Quaternion.identity, 0);
                     }
                     else
                     {
@@ -108,6 +111,11 @@ namespace SoccerLikeGame
                 {
                     Debug.Log("Ignoring scene load for " + Application.loadedLevelName);
                 }
+            }
+            //ボール生成
+            if(PhotonNetwork.isMasterClient == true)
+            {
+                PhotonNetwork.Instantiate(this.ballPrefab.name, new Vector3(-5f, 5f, 0f), Quaternion.identity, 0);
             }
         }
         #endregion
