@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour {
 
+    public int score;
+    public ScoreManager scoreManager;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,6 +21,8 @@ public class BallManager : MonoBehaviour {
         {
             Debug.Log("Goal");
             transform.position = new Vector3(0f, 5f, 0f);
+            score++;
+            scoreManager.AddPoint();
         }
         if (collision.gameObject.name == "GoalFloorPx")
         {
