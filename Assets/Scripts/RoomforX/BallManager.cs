@@ -24,12 +24,12 @@ public class BallManager : MonoBehaviour {
             score++;
             scoreManager.AddPoint();
         }
-        if (collision.gameObject.name == "GoalFloorPx")
+        if (collision.gameObject.name == "PositiveXGoal")
         {
             Debug.Log("Goal");
             transform.position = new Vector3(0f, 5f, 0f);
         }
-        if (collision.gameObject.name == "GoalFloorPy")
+        if (collision.gameObject.name == "NegativeXGoal")
         {
             Debug.Log("Goal");
             transform.position = new Vector3(0f, 5f, 0f);

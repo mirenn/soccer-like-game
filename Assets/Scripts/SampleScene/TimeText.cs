@@ -41,12 +41,12 @@ public class TimeText : Photon.MonoBehaviour {
 
             return;
         }
-        Debug.Log("マスターです");
+        //Debug.Log("マスターです");
 
 
         if(secondsTimeLimit <= seconds)
         {
-            Debug.Log("時間になりました");
+            //Debug.Log("時間になりました");
             return;
         }
 

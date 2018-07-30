@@ -191,11 +191,10 @@ namespace SoccerLikeGame
             //Debug.Log("OnPointerExit");
             playerPointerEnterFlag = false;
         }
-        #endregion
-
-        #region Custom
 
         #endregion
+
+
 
     }
 }

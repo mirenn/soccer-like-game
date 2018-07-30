@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PositiveXGoal : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public ScoreText scoreText;
+
+    #region monobehaviorプロパティ
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -13,4 +17,15 @@ public class PositiveXGoal : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "Ball(Clone)")
+        {
+            Debug.Log("PositiveXGoalに接触");
+            scoreText.AddNegativeXScore();
+        }
+    }
+
+    #endregion
 }
