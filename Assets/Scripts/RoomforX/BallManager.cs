@@ -6,13 +6,16 @@ public class BallManager : MonoBehaviour {
 
     public int score;
     public ScoreManager scoreManager;
+    private Rigidbody rb;
 	// Use this for initialization
 	void Start () {
-		
+        rb = GetComponent<Rigidbody>();
+        rb.AddForce(new Vector3(0, 0, 3), ForceMode.Impulse);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
 		
 	}
     private void OnCollisionEnter(Collision collision)

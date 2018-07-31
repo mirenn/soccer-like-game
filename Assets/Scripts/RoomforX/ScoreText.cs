@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour {
 
-    private int positiveXScore;
-    private int negativeXScore;
+    public int positiveXScore;
+    public int negativeXScore;
     private Text scoreText;
 
     #region Monobehaviourメソッド

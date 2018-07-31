@@ -5,64 +5,28 @@ using UnityEngine.UI;
 
 public class TimeText : Photon.MonoBehaviour {
 
-
+    //残り時間
     [SerializeField]
-    private int minute;
-    [SerializeField]
-    public float seconds;
+    public float remainingSeconds;
     //　前のUpdateの時の秒数
     private float oldSeconds;
     //　タイマー表示用テキスト
     private Text timerText;
 
-    [SerializeField]
-    private int secondsTimeLimit;
 
 
     #region monobehaviorメソッド
     // Use this for initialization
     void Start () {
-        minute = 0;
-        seconds = 0f;
         oldSeconds = 0f;
+        remainingSeconds = 10f;
         timerText = GetComponent<Text>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (PhotonNetwork.isMasterClient == false)
-        {
-            //　値が変わった時だけテキストUIを更新
-            if ((int)seconds != (int)oldSeconds)
-            {
-                timerText.text = "Time " + minute.ToString("00") + ":" + ((int)seconds).ToString("00");
-            }
-
-            return;
-        }
-        //Debug.Log("マスターです");
-
-
-        if(secondsTimeLimit <= seconds)
-        {
-            //Debug.Log("時間になりました");
-            return;
-        }
-
-
-        seconds += Time.deltaTime;
-        if (seconds >= 60f)
-        {
-            minute++;
-            seconds = seconds - 60;
-        }
-        //　値が変わった時だけテキストUIを更新
-        if ((int)seconds != (int)oldSeconds)
-        {
-            timerText.text = "Time " + minute.ToString("00") + ":" + ((int)seconds).ToString("00");
-        }
-        oldSeconds = seconds;
+        remainingSecondsDisp();
+        Debug.Log(remainingSeconds);
     }
     #endregion
 
@@ -72,13 +36,57 @@ public class TimeText : Photon.MonoBehaviour {
         if (stream.isWriting)
         {
             //データの送信
-            stream.SendNext(seconds);
+            stream.SendNext(remainingSeconds);
         }
         else
         {
             //データの受信
-            this.seconds = (float)stream.ReceiveNext();
+            this.remainingSeconds = (float)stream.ReceiveNext();
         }
     }
     #endregion
-}
+
+    #region publicメソッド
+    /// <summary>
+    /// 時間を減らして表示するメソッド
+    /// </summary>
+    /// <param name="remainingSeconds"></param>
+    /// <param name="timerText"></param>
+    /// <param name="oldSeconds"></param>
+    private void remainingSecondsDisp()
+    {
+        //マスタークライアントでないなら処理はしない
+        if (PhotonNetwork.isMasterClient == false)
+        {
+            //　値が変わった時だけテキストUIを更新
+            if ((int)remainingSeconds != (int)oldSeconds)
+            {
+                timerText.text = "TimeLimit " +  ":" + ((int)remainingSeconds).ToString("00");
+            }
+            return;
+        }
+
+        //残り時間がゼロ秒になったら処理終了
+        if(remainingSeconds <= 0)
+        {
+            if ((int)remainingSeconds != (int)oldSeconds)
+            {
+                timerText.text = "TimeLimit " + ":" + ((int)remainingSeconds).ToString("00");
+            }
+            return;
+        }
+        else
+        {
+            remainingSeconds -= Time.deltaTime;
+            Debug.Log(remainingSeconds);
+            //値が変わった時のみ、テキスト更新
+            if((int)remainingSeconds != (int)oldSeconds)
+            {
+                timerText.text = "TimeLimit " + ":" + ((int)remainingSeconds).ToString("00");
+            }
+        }
+        oldSeconds = remainingSeconds;
+
+    }
+        #endregion
+ }
