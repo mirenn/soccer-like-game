@@ -19,7 +19,6 @@ public class TimeText : Photon.MonoBehaviour {
     // Use this for initialization
     void Start () {
         oldSeconds = 0f;
-        remainingSeconds = 10f;
         timerText = GetComponent<Text>();
     }
 	

@@ -19,8 +19,6 @@ public class ResultText : Photon.MonoBehaviour {
 	void Update () {
 		if(timeText.remainingSeconds <= 0)
         {
-            Debug.Log("ResultTextゼロ点になったことを観測した");
-           // resultTextGameObject.SetActive(true);
             if (PhotonNetwork.isMasterClient)
             {
                 //プレイヤーは負のx側

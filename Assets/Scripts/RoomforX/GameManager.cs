@@ -12,6 +12,16 @@ namespace SoccerLikeGame
         public GameObject playerPrefab;
         public GameObject ballPrefab;
         static public GameManager Instance;
+
+        //Xの負側で設定されるプリファブ
+        GameObject NegativeXPlayerPrefab1;
+        GameObject NegativeXPlayerPrefab2;
+        GameObject NegativeXPlayerPrefab3;
+
+        //Xの正側で設定されるプリファブ
+        GameObject PositiveXPlayerPrefab1;
+        GameObject PositiveXPlayerPrefab2;
+        GameObject PositiveXPlayerPrefab3;
         #endregion
 
         #region Photon Messages
@@ -97,13 +107,15 @@ namespace SoccerLikeGame
                     //マスタークライアントはx負側、x正側
                     if(PhotonNetwork.isMasterClient == true)
                     {
-                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, 1f), Quaternion.identity, 0);
-                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, 0f), Quaternion.identity, 0);
-                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, -1f), Quaternion.identity, 0);
+                        NegativeXPlayerPrefab1 = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, 1.5f), Quaternion.identity, 0);
+                        NegativeXPlayerPrefab2 = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, 0f), Quaternion.identity, 0);
+                        NegativeXPlayerPrefab3 = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(-5f, 5f, -1.5f), Quaternion.identity, 0);
                     }
                     else
                     {
-                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(5f, 5f, 0f), Quaternion.identity, 0);
+                        PositiveXPlayerPrefab1 = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(5f, 5f, 1.5f), Quaternion.identity, 0);
+                        PositiveXPlayerPrefab2 = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(5f, 5f, 0f), Quaternion.identity, 0);
+                        PositiveXPlayerPrefab3 = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(5f, 5f, -1.5f), Quaternion.identity, 0);
                     }
 
                 }
@@ -125,7 +137,13 @@ namespace SoccerLikeGame
             // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
             if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
             {
-                transform.position = new Vector3(0f, 5f, 0f);
+                NegativeXPlayerPrefab1.transform.position = new Vector3(-5f, 5f, 1.5f);
+                NegativeXPlayerPrefab2.transform.position = new Vector3(-5f, 5f, 0f);
+                NegativeXPlayerPrefab3.transform.position = new Vector3(-5f, 5f, -1.5f);
+
+                PositiveXPlayerPrefab1.transform.position = new Vector3(5f, 5f, 1.5f);
+                PositiveXPlayerPrefab2.transform.position = new Vector3(5f, 5f, 0f);
+                PositiveXPlayerPrefab3.transform.position = new Vector3(5f, 5f, -1.5f);
             }
         }
         #endregion

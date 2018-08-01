@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affafea73878fb74da9f32c551e2a44f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remainingSeconds: 0
+  remainingSeconds: 40
 --- !u!114 &371696907
 MonoBehaviour:
   m_ObjectHideFlags: 0
