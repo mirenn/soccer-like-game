@@ -66,6 +66,18 @@ namespace SoccerLikeGame
             nowDrawingFlag = false;
             navtDestinationPath = new NavMeshPath();
             agent = GetComponent<NavMeshAgent>();
+
+            Color refreshOrange = new Color(1, 0.49f, 0.38f, 1);
+            Color blue = new Color(0.28f, 0.38f, 1, 1);
+            ////プレーヤーの色を変更
+            if (photonView.isMine == true)
+            {
+                GetComponent<Renderer>().material.SetColor("_BaseColor", blue);
+            }
+            else
+            {
+                GetComponent<Renderer>().material.SetColor("_BaseColor", refreshOrange);
+            }
         }
 
         /// <summary>
@@ -194,7 +206,13 @@ namespace SoccerLikeGame
 
         #endregion
 
-
+        void OnLevelWasLoaded(int level)
+        {
+            //シーンの変更があったら問答無用で場所を変更するコードのつもり
+            //効果なし
+            //transform.position = new Vector3(0f, 1f, 2f);
+           
+        }
 
     }
 }
