@@ -136,11 +136,11 @@ namespace SoccerLikeGame
             // #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.automaticallySyncScene to sync our instance scene.
             if (PhotonNetwork.room.PlayerCount == 1)
             {
-                Debug.Log("We load the 'Roomfor1' ");
+                Debug.Log("We load  the 'Roomfor1'ではなくてRoomfor2 ");
 
                 // #Critical
                 // Load the Room Level.
-                PhotonNetwork.LoadLevel("Roomfor1");
+                PhotonNetwork.LoadLevel("Roomfor2");//一人しかいなくても二人部屋がロードされるように変更した
             }
         }
         #endregion
